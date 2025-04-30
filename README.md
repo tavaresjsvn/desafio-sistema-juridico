@@ -50,9 +50,12 @@ Você foi contratado para desenvolver um sistema de gerenciamento de casos para 
 4. **`Escritorio`** (classe principal)
    **Atributos**:
    - `List<Processo> processos`
-   - `Map<String, Pessoa> pessoas` (CPF como chave)
+   - `Map<String, Cliente> clientes` (CPF como chave)
+   - `Map<String, Advogado> advogados` (CPF como chave)
 
    **Métodos**:
+   - `void adicionarCliente(Cliente cliente)`
+   - `void adicionarAdvogado(Advogado advogado)`
    - `void adicionarProcesso(Processo processo)`
    - `List<Processo> listarProcessosPorStatus(Status status)`
    - `void notificarPrazosVencidos()`
