@@ -7,6 +7,10 @@ public class Cliente extends Pessoa {
 	public Cliente(String nome, String cpf, String telefone, String email, String profissao) {
 		super(nome, cpf, telefone, email);
 		
+		if (profissao == null || profissao.isBlank()) {
+			throw new IllegalArgumentException("Campo de profissão está vazio e é obrigatório.");
+		}
+		
 		this.profissao = profissao;
 	}
 

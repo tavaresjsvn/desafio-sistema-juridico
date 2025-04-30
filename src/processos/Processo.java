@@ -19,11 +19,16 @@ public class Processo {
 			LocalDate prazo, Status status) {
 
 		this.numeroProcesso = numeroProcesso;
+		
+		if (numeroProcesso == null || numeroProcesso.isBlank()) {
+			throw new IllegalArgumentException("Campo de número do processo está vazio e é obrigatório.");
+		}
+		
 		this.cliente = cliente;
 		this.advogadoResponsavel = advogadoResponsavel;
 		this.descricao = descricao;
 		this.prazo = prazo;
-		this.status = status;
+		this.setStatus(status);
 	}
 	
 	public boolean prazoVencido() {
@@ -51,16 +56,14 @@ public class Processo {
 	}
 	
 	public String resumoDoProcesso() {
-		String statusPrazo = this.prazoVencido() ? "Sim" : "Não";
 		
-		return  "Resumo do Processo: \n" +
-	            "------------------------------\n" +
-			    "Número do processo: " + this.numeroProcesso + "\n" +
-				"Cliente: " + this.cliente.getNome() + "\n" +
-				"Advogado: " + this.advogadoResponsavel.getNome() + "\n" +
-				"Descrição do Caso: " + this.descricao + "\n" +
-				"Prazo vencido: " + statusPrazo + ", " + this.diasParaVencimento() + "(Data do Prazo: " + this.prazo + ")" + "\n" +
-				"Status: " + this.getStatus() + "\n";
+		return  "Processo: " + this.numeroProcesso + "\n" +
+				"Cliente: " + this.cliente.getNome() + " (" + this.cliente.getProfissao() + ")" + "\n" +
+				"Advogado: " + this.advogadoResponsavel.getNome() + " (" + this.advogadoResponsavel.getOab() + ")" + "\n" +
+				"Status: " + this.getStatus() + "\n" +
+				"Prazo: " + this.prazo  + " (" + this.diasParaVencimento() + ")" + "\n" +
+				"Descrição do Caso: " + this.descricao + "\n";
+				
 	}
 
 	public String getNumeroProcesso() {
@@ -108,6 +111,6 @@ public class Processo {
 	}
 
 	public void setStatus(Status status) {
-		this.status = status;
+	    this.status = status;
 	}
 }
